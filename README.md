@@ -4,6 +4,7 @@ Kargo yönetim sistemi veya Kargo yönetim otomasyonu diyebiliriz. Masüstü uyg
 
 Projenin tamamlandığı tarih : 14.06.2022
 
-![Sınıf Diyagramı][(https://github.com/rbaris/Kargo-Takip-Sistemi/Description/Sınıf-Diagramı.png)]
+![Sınıf Diyagramı](https://github.com/rbaris/Kargo-Takip-Sistemi/blob/105ce036a30a6627a0609dc416f43c8c808b9272/Description/S%C4%B1n%C4%B1f%20Diagram%C4%B1.png)
 
 ![alt text](https://github.com/rbaris/Kargo-Takip-Sistemi/Description/Sınıf-Diagramı.png)
+
