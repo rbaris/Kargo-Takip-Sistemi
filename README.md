@@ -3,7 +3,9 @@
 Kargo yönetim sistemi veya Kargo yönetim otomasyonu diyebiliriz. Masüstü uygulaması olarak tasarlanmıştır. Oturum açma, kimlik doğrulama , kullanıcının rolüne özel metotlar ve kısıtlar getirilmektedir. Projenin veri tabanı MSSQL üzerinden oluşturulmuştur.Aşağıda veritabanı tasarımı(ER diyagramı) ve sınıf diyagramı paylaşılmıştır.
 
 ### Projedeki ekip arkadaşlarım 
+
 +[Fatih Aydoğdu](https://github.com/MFatihAydogdu)
+
 +[Melih Aksan](https://github.com/figeros)
 
 Projenin tamamlandığı tarih : 14.06.2022
