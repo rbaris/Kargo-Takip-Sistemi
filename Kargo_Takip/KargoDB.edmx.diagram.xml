@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d72a0f935f8a43ea94105ab275e6c094" Name="Diagram1">
+        <EntityTypeShape EntityType="KargoDBModel.Kargo" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="KargoDBModel.Kargo_Durum" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KargoDBModel.Kurye" Width="1.5" PointX="10.5" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KargoDBModel.Musteri" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KargoDBModel.Sube" Width="1.5" PointX="8.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KargoDBModel.Sube_Calisani" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KargoDBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <AssociationConnector Association="KargoDBModel.FK_Kargo_Durum_Kargo" ManuallyRouted="false" />
+        <AssociationConnector Association="KargoDBModel.FK_Kargo_Musteri_Alici" ManuallyRouted="false" />
+        <AssociationConnector Association="KargoDBModel.FK_Kargo_Musteri_Gonderici" ManuallyRouted="false" />
+        <AssociationConnector Association="KargoDBModel.FK_Sube_Kargo" ManuallyRouted="false" />
+        <AssociationConnector Association="KargoDBModel.FK_Kurye_Sube1" ManuallyRouted="false" />
+        <AssociationConnector Association="KargoDBModel.FK_Sube_Sube_Calisani2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

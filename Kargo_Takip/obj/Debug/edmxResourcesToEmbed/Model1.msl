@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KargoDBModelStoreContainer" CdmEntityContainer="KargoDBEntities1">
+    <EntitySetMapping Name="Kargo">
+      <EntityTypeMapping TypeName="KargoDBModel.Kargo">
+        <MappingFragment StoreEntitySet="Kargo">
+          <ScalarProperty Name="Kargo_id" ColumnName="Kargo_id" />
+          <ScalarProperty Name="Takip_no" ColumnName="Takip_no" />
+          <ScalarProperty Name="Agirlik" ColumnName="Agirlik" />
+          <ScalarProperty Name="Tur" ColumnName="Tur" />
+          <ScalarProperty Name="Hacim" ColumnName="Hacim" />
+          <ScalarProperty Name="Gonderici_id" ColumnName="Gonderici_id" />
+          <ScalarProperty Name="Alici_id" ColumnName="Alici_id" />
+          <ScalarProperty Name="Kargo_adres" ColumnName="Kargo_adres" />
+          <ScalarProperty Name="Ucret" ColumnName="Ucret" />
+          <ScalarProperty Name="Durum" ColumnName="Durum" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kurye">
+      <EntityTypeMapping TypeName="KargoDBModel.Kurye">
+        <MappingFragment StoreEntitySet="Kurye">
+          <ScalarProperty Name="Kurye_id" ColumnName="Kurye_id" />
+          <ScalarProperty Name="Kurye_sube_id" ColumnName="Kurye_sube_id" />
+          <ScalarProperty Name="Kurye_sifre" ColumnName="Kurye_sifre" />
+          <ScalarProperty Name="Kurye_ad" ColumnName="Kurye_ad" />
+          <ScalarProperty Name="Kurye_soyad" ColumnName="Kurye_soyad" />
+          <ScalarProperty Name="Kurye_tc_no" ColumnName="Kurye_tc_no" />
+          <ScalarProperty Name="Kurye_plaka" ColumnName="Kurye_plaka" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Musteri">
+      <EntityTypeMapping TypeName="KargoDBModel.Musteri">
+        <MappingFragment StoreEntitySet="Musteri">
+          <ScalarProperty Name="Musteri_id" ColumnName="Musteri_id" />
+          <ScalarProperty Name="Musteri_sifre" ColumnName="Musteri_sifre" />
+          <ScalarProperty Name="Müsteri_email" ColumnName="Müsteri_email" />
+          <ScalarProperty Name="Musteri_ad" ColumnName="Musteri_ad" />
+          <ScalarProperty Name="Musteri_soyad" ColumnName="Musteri_soyad" />
+          <ScalarProperty Name="Musteri_tc_no" ColumnName="Musteri_tc_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sube">
+      <EntityTypeMapping TypeName="KargoDBModel.Sube">
+        <MappingFragment StoreEntitySet="Sube">
+          <ScalarProperty Name="Sube_id" ColumnName="Sube_id" />
+          <ScalarProperty Name="Sube_Kargo_id" ColumnName="Sube_Kargo_id" />
+          <ScalarProperty Name="Sube_tel_no" ColumnName="Sube_tel_no" />
+          <ScalarProperty Name="Sube_adres" ColumnName="Sube_adres" />
+          <ScalarProperty Name="Sube_adi" ColumnName="Sube_adi" />
+          <ScalarProperty Name="Sube_calisani_id" ColumnName="Sube_calisani_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sube_Calisani">
+      <EntityTypeMapping TypeName="KargoDBModel.Sube_Calisani">
+        <MappingFragment StoreEntitySet="Sube_Calisani">
+          <ScalarProperty Name="Sube_calisani_id" ColumnName="Sube_calisani_id" />
+          <ScalarProperty Name="Sube_calisani_sifre" ColumnName="Sube_calisani_sifre" />
+          <ScalarProperty Name="Sube_calisani_tcno" ColumnName="Sube_calisani_tcno" />
+          <ScalarProperty Name="Sube_calisani_ad" ColumnName="Sube_calisani_ad" />
+          <ScalarProperty Name="Sube_calisani_soyad" ColumnName="Sube_calisani_soyad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="KargoDBModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kargo_Durum">
+      <EntityTypeMapping TypeName="KargoDBModel.Kargo_Durum">
+        <MappingFragment StoreEntitySet="Kargo_Durum">
+          <ScalarProperty Name="Kargo_id" ColumnName="Kargo_id" />
+          <ScalarProperty Name="islem" ColumnName="islem" />
+          <ScalarProperty Name="Islem_sube" ColumnName="Islem_sube" />
+          <ScalarProperty Name="Islem_tarihi" ColumnName="Islem_tarihi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

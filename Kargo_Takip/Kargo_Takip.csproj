@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2E115D77-47E0-4744-9AD0-D2A360007296}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Kargo_Takip</RootNamespace>
+    <AssemblyName>Kargo_Takip</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Giriş.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Giriş.Designer.cs">
+      <DependentUpon>Giriş.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kargo.cs">
+      <DependentUpon>KargoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KargoDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KargoDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KargoDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KargoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KargoDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KargoDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="KargoDuzenle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KargoDuzenle.Designer.cs">
+      <DependentUpon>KargoDuzenle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KargoOlustur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KargoOlustur.Designer.cs">
+      <DependentUpon>KargoOlustur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kargo_Durum.cs">
+      <DependentUpon>KargoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kurye.cs">
+      <DependentUpon>KargoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kurye_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kurye_Form.Designer.cs">
+      <DependentUpon>Kurye_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Musteri.cs">
+      <DependentUpon>KargoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Musteri_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Musteri_Form.Designer.cs">
+      <DependentUpon>Musteri_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Musteri_kargo_takip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Musteri_kargo_takip.Designer.cs">
+      <DependentUpon>Musteri_kargo_takip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sube.cs">
+      <DependentUpon>KargoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sube_Calisani.cs">
+      <DependentUpon>KargoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sube_Calisani_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sube_Calisani_Form.Designer.cs">
+      <DependentUpon>Sube_Calisani_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>KargoDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Üye Ol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Üye Ol.Designer.cs">
+      <DependentUpon>Üye Ol.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Giriş.resx">
+      <DependentUpon>Giriş.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KargoDuzenle.resx">
+      <DependentUpon>KargoDuzenle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KargoOlustur.resx">
+      <DependentUpon>KargoOlustur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kurye_Form.resx">
+      <DependentUpon>Kurye_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Musteri_Form.resx">
+      <DependentUpon>Musteri_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Musteri_kargo_takip.resx">
+      <DependentUpon>Musteri_kargo_takip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Sube_Calisani_Form.resx">
+      <DependentUpon>Sube_Calisani_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Üye Ol.resx">
+      <DependentUpon>Üye Ol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="KargoDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>KargoDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="KargoDB.edmx.diagram">
+      <DependentUpon>KargoDB.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\Kargo.datasource" />
+    <None Include="Properties\DataSources\Kargo_Durum.datasource" />
+    <None Include="Properties\DataSources\Sube.datasource" />
+    <None Include="Properties\DataSources\Sube_Calisani.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="KargoDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KargoDB.edmx</DependentUpon>
+      <LastGenOutput>KargoDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="KargoDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KargoDB.edmx</DependentUpon>
+      <LastGenOutput>KargoDB.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

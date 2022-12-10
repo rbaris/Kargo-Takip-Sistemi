@@ -1,0 +1,508 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KargoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Kargo">
+          <Key>
+            <PropertyRef Name="Kargo_id" />
+          </Key>
+          <Property Name="Kargo_id" Type="int" Nullable="false" />
+          <Property Name="Takip_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Agirlik" Type="int" Nullable="false" />
+          <Property Name="Tur" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Hacim" Type="int" Nullable="false" />
+          <Property Name="Gonderici_id" Type="int" Nullable="false" />
+          <Property Name="Alici_id" Type="int" Nullable="false" />
+          <Property Name="Kargo_adres" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Ucret" Type="float" Nullable="false" />
+          <Property Name="Durum" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kargo_Durum">
+          <Key>
+            <PropertyRef Name="Kargo_durum_id" />
+          </Key>
+          <Property Name="Kargo_id" Type="int" Nullable="false" />
+          <Property Name="islem" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Islem_sube" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Islem_tarihi" Type="datetime" Nullable="false" />
+          <Property Name="Kargo_durum_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kurye">
+          <Key>
+            <PropertyRef Name="Kurye_id" />
+          </Key>
+          <Property Name="Kurye_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kurye_sube_id" Type="int" Nullable="false" />
+          <Property Name="Kurye_sifre" Type="int" Nullable="false" />
+          <Property Name="Kurye_ad" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Kurye_soyad" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Kurye_tc_no" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Kurye_plaka" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="Musteri_id" />
+          </Key>
+          <Property Name="Musteri_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Musteri_sifre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Müsteri_email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Musteri_ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Musteri_soyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Musteri_tc_no" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sube">
+          <Key>
+            <PropertyRef Name="Sube_id" />
+          </Key>
+          <Property Name="Sube_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sube_Kargo_id" Type="int" Nullable="false" />
+          <Property Name="Sube_tel_no" Type="int" Nullable="false" />
+          <Property Name="Sube_adres" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Sube_adi" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Sube_calisani_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sube_Calisani">
+          <Key>
+            <PropertyRef Name="Sube_calisani_id" />
+          </Key>
+          <Property Name="Sube_calisani_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sube_calisani_sifre" Type="int" Nullable="false" />
+          <Property Name="Sube_calisani_tcno" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Sube_calisani_ad" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Sube_calisani_soyad" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Kargo_Durum_Kargo">
+          <End Role="Kargo" Type="Self.Kargo" Multiplicity="1" />
+          <End Role="Kargo_Durum" Type="Self.Kargo_Durum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kargo">
+              <PropertyRef Name="Kargo_id" />
+            </Principal>
+            <Dependent Role="Kargo_Durum">
+              <PropertyRef Name="Kargo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kargo_Musteri_Alici">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+          <End Role="Kargo" Type="Self.Kargo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="Musteri_id" />
+            </Principal>
+            <Dependent Role="Kargo">
+              <PropertyRef Name="Alici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kargo_Musteri_Gonderici">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+          <End Role="Kargo" Type="Self.Kargo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="Musteri_id" />
+            </Principal>
+            <Dependent Role="Kargo">
+              <PropertyRef Name="Gonderici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kurye_Sube1">
+          <End Role="Sube" Type="Self.Sube" Multiplicity="1" />
+          <End Role="Kurye" Type="Self.Kurye" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sube">
+              <PropertyRef Name="Sube_id" />
+            </Principal>
+            <Dependent Role="Kurye">
+              <PropertyRef Name="Kurye_sube_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sube_Kargo">
+          <End Role="Kargo" Type="Self.Kargo" Multiplicity="1" />
+          <End Role="Sube" Type="Self.Sube" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kargo">
+              <PropertyRef Name="Kargo_id" />
+            </Principal>
+            <Dependent Role="Sube">
+              <PropertyRef Name="Sube_Kargo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sube_Sube_Calisani2">
+          <End Role="Sube_Calisani" Type="Self.Sube_Calisani" Multiplicity="1" />
+          <End Role="Sube" Type="Self.Sube" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sube_Calisani">
+              <PropertyRef Name="Sube_calisani_id" />
+            </Principal>
+            <Dependent Role="Sube">
+              <PropertyRef Name="Sube_calisani_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KargoDBModelStoreContainer">
+          <EntitySet Name="Kargo" EntityType="Self.Kargo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kargo_Durum" EntityType="Self.Kargo_Durum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kurye" EntityType="Self.Kurye" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Musteri" EntityType="Self.Musteri" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sube" EntityType="Self.Sube" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sube_Calisani" EntityType="Self.Sube_Calisani" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Kargo_Durum_Kargo" Association="Self.FK_Kargo_Durum_Kargo">
+            <End Role="Kargo" EntitySet="Kargo" />
+            <End Role="Kargo_Durum" EntitySet="Kargo_Durum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kargo_Musteri_Alici" Association="Self.FK_Kargo_Musteri_Alici">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="Kargo" EntitySet="Kargo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kargo_Musteri_Gonderici" Association="Self.FK_Kargo_Musteri_Gonderici">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="Kargo" EntitySet="Kargo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kurye_Sube1" Association="Self.FK_Kurye_Sube1">
+            <End Role="Sube" EntitySet="Sube" />
+            <End Role="Kurye" EntitySet="Kurye" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sube_Kargo" Association="Self.FK_Sube_Kargo">
+            <End Role="Kargo" EntitySet="Kargo" />
+            <End Role="Sube" EntitySet="Sube" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sube_Sube_Calisani2" Association="Self.FK_Sube_Sube_Calisani2">
+            <End Role="Sube_Calisani" EntitySet="Sube_Calisani" />
+            <End Role="Sube" EntitySet="Sube" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KargoDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Kargo">
+          <Key>
+            <PropertyRef Name="Kargo_id" />
+          </Key>
+          <Property Name="Kargo_id" Type="Int32" Nullable="false" />
+          <Property Name="Takip_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Agirlik" Type="Int32" Nullable="false" />
+          <Property Name="Tur" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Hacim" Type="Int32" Nullable="false" />
+          <Property Name="Gonderici_id" Type="Int32" Nullable="false" />
+          <Property Name="Alici_id" Type="Int32" Nullable="false" />
+          <Property Name="Kargo_adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ucret" Type="Double" Nullable="false" />
+          <Property Name="Durum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Kargo_Durum" Relationship="Self.FK_Kargo_Durum_Kargo" FromRole="Kargo" ToRole="Kargo_Durum" />
+          <NavigationProperty Name="Musteri" Relationship="Self.FK_Kargo_Musteri_Alici" FromRole="Kargo" ToRole="Musteri" />
+          <NavigationProperty Name="Musteri1" Relationship="Self.FK_Kargo_Musteri_Gonderici" FromRole="Kargo" ToRole="Musteri" />
+          <NavigationProperty Name="Sube" Relationship="Self.FK_Sube_Kargo" FromRole="Kargo" ToRole="Sube" />
+        </EntityType>
+        <EntityType Name="Kargo_Durum">
+          <Key>
+            <PropertyRef Name="Kargo_durum_id" />
+          </Key>
+          <Property Name="Kargo_id" Type="Int32" Nullable="false" />
+          <Property Name="islem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Islem_sube" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Islem_tarihi" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Kargo_durum_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Kargo" Relationship="Self.FK_Kargo_Durum_Kargo" FromRole="Kargo_Durum" ToRole="Kargo" />
+        </EntityType>
+        <EntityType Name="Kurye">
+          <Key>
+            <PropertyRef Name="Kurye_id" />
+          </Key>
+          <Property Name="Kurye_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kurye_sube_id" Type="Int32" Nullable="false" />
+          <Property Name="Kurye_sifre" Type="Int32" Nullable="false" />
+          <Property Name="Kurye_ad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kurye_soyad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kurye_tc_no" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Kurye_plaka" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Sube" Relationship="Self.FK_Kurye_Sube1" FromRole="Kurye" ToRole="Sube" />
+        </EntityType>
+        <EntityType Name="Musteri">
+          <Key>
+            <PropertyRef Name="Musteri_id" />
+          </Key>
+          <Property Name="Musteri_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Musteri_sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Müsteri_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Musteri_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Musteri_soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Musteri_tc_no" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Kargo" Relationship="Self.FK_Kargo_Musteri_Alici" FromRole="Musteri" ToRole="Kargo" />
+          <NavigationProperty Name="Kargo1" Relationship="Self.FK_Kargo_Musteri_Gonderici" FromRole="Musteri" ToRole="Kargo" />
+        </EntityType>
+        <EntityType Name="Sube">
+          <Key>
+            <PropertyRef Name="Sube_id" />
+          </Key>
+          <Property Name="Sube_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sube_Kargo_id" Type="Int32" Nullable="false" />
+          <Property Name="Sube_tel_no" Type="Int32" Nullable="false" />
+          <Property Name="Sube_adres" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sube_adi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sube_calisani_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Kargo" Relationship="Self.FK_Sube_Kargo" FromRole="Sube" ToRole="Kargo" />
+          <NavigationProperty Name="Kurye" Relationship="Self.FK_Kurye_Sube1" FromRole="Sube" ToRole="Kurye" />
+          <NavigationProperty Name="Sube_Calisani" Relationship="Self.FK_Sube_Sube_Calisani2" FromRole="Sube" ToRole="Sube_Calisani" />
+        </EntityType>
+        <EntityType Name="Sube_Calisani">
+          <Key>
+            <PropertyRef Name="Sube_calisani_id" />
+          </Key>
+          <Property Name="Sube_calisani_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sube_calisani_sifre" Type="Int32" Nullable="false" />
+          <Property Name="Sube_calisani_tcno" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sube_calisani_ad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sube_calisani_soyad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Sube" Relationship="Self.FK_Sube_Sube_Calisani2" FromRole="Sube_Calisani" ToRole="Sube" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Kargo_Durum_Kargo">
+          <End Role="Kargo" Type="Self.Kargo" Multiplicity="1" />
+          <End Role="Kargo_Durum" Type="Self.Kargo_Durum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kargo">
+              <PropertyRef Name="Kargo_id" />
+            </Principal>
+            <Dependent Role="Kargo_Durum">
+              <PropertyRef Name="Kargo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kargo_Musteri_Alici">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+          <End Role="Kargo" Type="Self.Kargo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="Musteri_id" />
+            </Principal>
+            <Dependent Role="Kargo">
+              <PropertyRef Name="Alici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kargo_Musteri_Gonderici">
+          <End Role="Musteri" Type="Self.Musteri" Multiplicity="1" />
+          <End Role="Kargo" Type="Self.Kargo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Musteri">
+              <PropertyRef Name="Musteri_id" />
+            </Principal>
+            <Dependent Role="Kargo">
+              <PropertyRef Name="Gonderici_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sube_Kargo">
+          <End Role="Kargo" Type="Self.Kargo" Multiplicity="1" />
+          <End Role="Sube" Type="Self.Sube" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kargo">
+              <PropertyRef Name="Kargo_id" />
+            </Principal>
+            <Dependent Role="Sube">
+              <PropertyRef Name="Sube_Kargo_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kurye_Sube1">
+          <End Role="Sube" Type="Self.Sube" Multiplicity="1" />
+          <End Role="Kurye" Type="Self.Kurye" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sube">
+              <PropertyRef Name="Sube_id" />
+            </Principal>
+            <Dependent Role="Kurye">
+              <PropertyRef Name="Kurye_sube_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sube_Sube_Calisani2">
+          <End Role="Sube_Calisani" Type="Self.Sube_Calisani" Multiplicity="1" />
+          <End Role="Sube" Type="Self.Sube" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sube_Calisani">
+              <PropertyRef Name="Sube_calisani_id" />
+            </Principal>
+            <Dependent Role="Sube">
+              <PropertyRef Name="Sube_calisani_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KargoDBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Kargo" EntityType="Self.Kargo" />
+          <EntitySet Name="Kargo_Durum" EntityType="Self.Kargo_Durum" />
+          <EntitySet Name="Kurye" EntityType="Self.Kurye" />
+          <EntitySet Name="Musteri" EntityType="Self.Musteri" />
+          <EntitySet Name="Sube" EntityType="Self.Sube" />
+          <EntitySet Name="Sube_Calisani" EntityType="Self.Sube_Calisani" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_Kargo_Durum_Kargo" Association="Self.FK_Kargo_Durum_Kargo">
+            <End Role="Kargo" EntitySet="Kargo" />
+            <End Role="Kargo_Durum" EntitySet="Kargo_Durum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kargo_Musteri_Alici" Association="Self.FK_Kargo_Musteri_Alici">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="Kargo" EntitySet="Kargo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kargo_Musteri_Gonderici" Association="Self.FK_Kargo_Musteri_Gonderici">
+            <End Role="Musteri" EntitySet="Musteri" />
+            <End Role="Kargo" EntitySet="Kargo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sube_Kargo" Association="Self.FK_Sube_Kargo">
+            <End Role="Kargo" EntitySet="Kargo" />
+            <End Role="Sube" EntitySet="Sube" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kurye_Sube1" Association="Self.FK_Kurye_Sube1">
+            <End Role="Sube" EntitySet="Sube" />
+            <End Role="Kurye" EntitySet="Kurye" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sube_Sube_Calisani2" Association="Self.FK_Sube_Sube_Calisani2">
+            <End Role="Sube_Calisani" EntitySet="Sube_Calisani" />
+            <End Role="Sube" EntitySet="Sube" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KargoDBModelStoreContainer" CdmEntityContainer="KargoDBEntities1">
+          <EntitySetMapping Name="Kargo">
+            <EntityTypeMapping TypeName="KargoDBModel.Kargo">
+              <MappingFragment StoreEntitySet="Kargo">
+                <ScalarProperty Name="Kargo_id" ColumnName="Kargo_id" />
+                <ScalarProperty Name="Takip_no" ColumnName="Takip_no" />
+                <ScalarProperty Name="Agirlik" ColumnName="Agirlik" />
+                <ScalarProperty Name="Tur" ColumnName="Tur" />
+                <ScalarProperty Name="Hacim" ColumnName="Hacim" />
+                <ScalarProperty Name="Gonderici_id" ColumnName="Gonderici_id" />
+                <ScalarProperty Name="Alici_id" ColumnName="Alici_id" />
+                <ScalarProperty Name="Kargo_adres" ColumnName="Kargo_adres" />
+                <ScalarProperty Name="Ucret" ColumnName="Ucret" />
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kargo_Durum">
+            <EntityTypeMapping TypeName="KargoDBModel.Kargo_Durum">
+              <MappingFragment StoreEntitySet="Kargo_Durum">
+                <ScalarProperty Name="Kargo_id" ColumnName="Kargo_id" />
+                <ScalarProperty Name="islem" ColumnName="islem" />
+                <ScalarProperty Name="Islem_sube" ColumnName="Islem_sube" />
+                <ScalarProperty Name="Islem_tarihi" ColumnName="Islem_tarihi" />
+                <ScalarProperty Name="Kargo_durum_id" ColumnName="Kargo_durum_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kurye">
+            <EntityTypeMapping TypeName="KargoDBModel.Kurye">
+              <MappingFragment StoreEntitySet="Kurye">
+                <ScalarProperty Name="Kurye_id" ColumnName="Kurye_id" />
+                <ScalarProperty Name="Kurye_sube_id" ColumnName="Kurye_sube_id" />
+                <ScalarProperty Name="Kurye_sifre" ColumnName="Kurye_sifre" />
+                <ScalarProperty Name="Kurye_ad" ColumnName="Kurye_ad" />
+                <ScalarProperty Name="Kurye_soyad" ColumnName="Kurye_soyad" />
+                <ScalarProperty Name="Kurye_tc_no" ColumnName="Kurye_tc_no" />
+                <ScalarProperty Name="Kurye_plaka" ColumnName="Kurye_plaka" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Musteri">
+            <EntityTypeMapping TypeName="KargoDBModel.Musteri">
+              <MappingFragment StoreEntitySet="Musteri">
+                <ScalarProperty Name="Musteri_id" ColumnName="Musteri_id" />
+                <ScalarProperty Name="Musteri_sifre" ColumnName="Musteri_sifre" />
+                <ScalarProperty Name="Müsteri_email" ColumnName="Müsteri_email" />
+                <ScalarProperty Name="Musteri_ad" ColumnName="Musteri_ad" />
+                <ScalarProperty Name="Musteri_soyad" ColumnName="Musteri_soyad" />
+                <ScalarProperty Name="Musteri_tc_no" ColumnName="Musteri_tc_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sube">
+            <EntityTypeMapping TypeName="KargoDBModel.Sube">
+              <MappingFragment StoreEntitySet="Sube">
+                <ScalarProperty Name="Sube_id" ColumnName="Sube_id" />
+                <ScalarProperty Name="Sube_Kargo_id" ColumnName="Sube_Kargo_id" />
+                <ScalarProperty Name="Sube_tel_no" ColumnName="Sube_tel_no" />
+                <ScalarProperty Name="Sube_adres" ColumnName="Sube_adres" />
+                <ScalarProperty Name="Sube_adi" ColumnName="Sube_adi" />
+                <ScalarProperty Name="Sube_calisani_id" ColumnName="Sube_calisani_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sube_Calisani">
+            <EntityTypeMapping TypeName="KargoDBModel.Sube_Calisani">
+              <MappingFragment StoreEntitySet="Sube_Calisani">
+                <ScalarProperty Name="Sube_calisani_id" ColumnName="Sube_calisani_id" />
+                <ScalarProperty Name="Sube_calisani_sifre" ColumnName="Sube_calisani_sifre" />
+                <ScalarProperty Name="Sube_calisani_tcno" ColumnName="Sube_calisani_tcno" />
+                <ScalarProperty Name="Sube_calisani_ad" ColumnName="Sube_calisani_ad" />
+                <ScalarProperty Name="Sube_calisani_soyad" ColumnName="Sube_calisani_soyad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="KargoDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
